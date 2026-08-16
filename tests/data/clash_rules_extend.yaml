@@ -1,0 +1,18 @@
+rules:
+  - DOMAIN-SUFFIX,example.com,proxy
+  - DOMAIN-SUFFIX,example.net,proxy
+  - DOMAIN-SUFFIX,example.org,proxy
+  - DOMAIN-SUFFIX,example.edu,proxy
+  - DOMAIN-SUFFIX,example.invalid,proxy
+  - DOMAIN-SUFFIX,a.example.com,proxy
+  - DOMAIN-SUFFIX,b.example.com,proxy
+  - DOMAIN-SUFFIX,c.example.com,proxy
+  - DOMAIN-SUFFIX,d.example.com,proxy
+  - DOMAIN-SUFFIX,e.example.com,proxy
+  - DOMAIN-SUFFIX,f.example.com,proxy
+  - DOMAIN-SUFFIX,g.example.com,proxy
+  - DOMAIN-SUFFIX,h.example.com,proxy
+  - DOMAIN-SUFFIX,i.example.com,proxy
+  - DOMAIN-SUFFIX,j.example.com,proxy
+  - DOMAIN-SUFFIX,one.example.net,proxy
+  - DOMAIN-SUFFIX,two.example.net,proxy

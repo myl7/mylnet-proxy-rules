@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>mylnet proxy rules</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="title">
+        <h1>mihomo extend rules</h1>
+        <p id="meta" class="meta"></p>
+      </div>
+      <div class="actions">
+        <button id="reload" type="button">Reload</button>
+        <button id="dry-run" type="button">Dry run</button>
+        <button id="apply" type="button" class="primary">Save and apply</button>
+      </div>
+    </header>
+
+    <main>
+      <div id="banner" class="banner" hidden></div>
+
+      <div class="table">
+        <div class="head">
+          <span>#</span>
+          <span>Type</span>
+          <span>Payload</span>
+          <span>Target</span>
+          <span>Note</span>
+          <span></span>
+        </div>
+        <div id="rows"></div>
+      </div>
+
+      <div class="below">
+        <button id="add" type="button">Add rule</button>
+        <span id="count" class="count"></span>
+      </div>
+
+      <p class="footnote">
+        These rules are injected between the AI rules and <code>GEOSITE,cn,cn</code>. The first match wins, so a rule
+        only needs to sit above one it overlaps with.
+      </p>
+    </main>
+
+    <section id="job" class="job" hidden>
+      <div class="job-head">
+        <span id="job-state" class="job-state"></span>
+        <button id="job-toggle" type="button">Hide log</button>
+      </div>
+      <pre id="job-log"></pre>
+    </section>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

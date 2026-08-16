@@ -1,0 +1,18 @@
+# IDE
+.vscode
+.idea
+
+# Agents
+.agents
+.codex
+.claude
+.firecrawl
+
+# Python
+__pycache__
+.ruff_cache
+.mypy_cache
+.venv
+*.egg-info
+build
+dist
