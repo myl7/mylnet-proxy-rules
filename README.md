@@ -45,8 +45,9 @@ Validation happens server-side before anything is written: known types only
 target and option whitelists, no duplicates, and a cap on the rule count. The
 apply pipeline is single-slot: the write is atomic (temp file + rename), the
 previous content is backed up, a `--check` run happens first, and a failed
-apply restores the file and commits a revert. Git push failures are warnings
-only, because the rules are already live by then.
+apply restores the file and commits a revert. The commit is rebased onto the
+remote before pushing; a failed rebase or push is a warning only, because the
+rules are already live by then.
 
 ## Local development
 

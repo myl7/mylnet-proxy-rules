@@ -281,9 +281,15 @@ class ApplyRunner:
         settings = self._settings
         if not settings.git_push:
             return
+        # Rebase onto the remote first, so a concurrent edit elsewhere never
+        # turns the push into a rejected non-fast-forward. On any failure the
+        # local commit stays and the push is skipped; the rules are already
+        # live, so this is worth reporting but not worth aborting the apply.
+        if self._stream(job, ["git", "-C", str(settings.secrets_dir), "pull", "--rebase"], settings.secrets_dir) != 0:
+            self._capture(["git", "-C", str(settings.secrets_dir), "rebase", "--abort"])
+            job.append("warning: could not rebase onto the remote, skipping the push")
+            return
         if self._stream(job, ["git", "-C", str(settings.secrets_dir), "push"], settings.secrets_dir) != 0:
-            # The rules are already live. A failed push is worth reporting but not
-            # worth rolling back a working subscription for.
             job.append("warning: the push failed, the rules are applied but the commit is only local")
 
     def _verify(self, job: Job, rules: list[Rule]) -> str | None:
