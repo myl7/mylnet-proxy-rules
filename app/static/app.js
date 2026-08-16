@@ -124,6 +124,8 @@ function buildRow(rule, index) {
   actions.append(resolve);
 
   actions.append(
+    iconButton("⤒", "Move to top", () => moveTo(index, 0)),
+    iconButton("⤓", "Move to bottom", () => moveTo(index, state.rules.length - 1)),
     iconButton("↑", "Move up", () => move(index, -1)),
     iconButton("↓", "Move down", () => move(index, 1)),
     iconButton("✕", "Delete", () => remove(index)),
@@ -192,6 +194,17 @@ function move(index, delta) {
   render();
 }
 
+function moveTo(index, target) {
+  if (index === target) {
+    return;
+  }
+  const [rule] = state.rules.splice(index, 1);
+  state.rules.splice(target, 0, rule);
+  state.rowErrors.clear();
+  setDirty(true);
+  render();
+}
+
 function remove(index) {
   state.rules.splice(index, 1);
   state.rowErrors.clear();
@@ -200,7 +213,7 @@ function remove(index) {
 }
 
 function add() {
-  state.rules.push({
+  state.rules.unshift({
     type: "DOMAIN-SUFFIX",
     payload: "",
     target: defaultTarget(),
@@ -210,10 +223,9 @@ function add() {
   state.rowErrors.clear();
   setDirty(true);
   render();
-  const inputs = el.rows.querySelectorAll("input.payload");
-  const last = inputs[inputs.length - 1];
-  if (last) {
-    last.focus();
+  const first = el.rows.querySelector("input.payload");
+  if (first) {
+    first.focus();
   }
 }
 
